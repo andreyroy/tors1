@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  master:
+    build:
+      context: ./master
+      dockerfile: Dockerfile
+    networks:
+      - my_network
+    container_name: master
+    depends_on:
+      - slave1
+      - slave2
+      - slave3
+      - slave4
+
+  slave1:
+    build:
+      context: ./slave
+      dockerfile: Dockerfile
+    networks:
+      - my_network
+    container_name: slave1
+
+  slave2:
+    build:
+      context: ./slave
+      dockerfile: Dockerfile
+    networks:
+      - my_network
+    container_name: slave2
+
+  slave3:
+    build:
+      context: ./slave
+      dockerfile: Dockerfile
+    networks:
+      - my_network
+    container_name: slave3
+
+  slave4:
+    build:
+      context: ./slave
+      dockerfile: Dockerfile
+    networks:
+      - my_network
+    container_name: slave4
+
+networks:
+  my_network:
+    driver: bridge
